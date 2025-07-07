@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.otro.ui.screens.GreetingScreen
 import com.example.otro.ui.theme.OtroTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,28 +23,17 @@ class MainActivity : ComponentActivity() {
         setContent {
             OtroTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    GreetingScreen()
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     OtroTheme {
-        Greeting("Android")
+        GreetingScreen()
     }
 }

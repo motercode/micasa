@@ -18,6 +18,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testApplicationId = "com.example.otro"
     }
 
     buildTypes {
@@ -28,6 +29,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+    }
+    tasks.register("cleanAndTest") {
+        description = "Uninstalls, cleans, and runs connected tests."
+        dependsOn("uninstallDebug", "uninstallDebugAndroidTest", "clean", "connectedDebugAndroidTest")
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -63,10 +68,11 @@ dependencies {
     implementation(libs.room.ktx)
 
     testImplementation(libs.junit)
+    testImplementation("org.robolectric:robolectric:4.11.1")
+    testImplementation(platform(libs.androidx.compose.bom))
+    testImplementation(libs.androidx.ui.test.junit4)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
